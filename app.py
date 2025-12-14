@@ -217,16 +217,23 @@ if file_bytes:
             st.download_button(
                 label=texts["download_label"],
                 data=excel_bytes,
-                file_name="ocr_results.xlsx",
+                file_name=f"ocr_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 key="download_current_excel",
             )
             st.download_button(
                 label="Download results as JSON",
                 data=pd.Series(values).to_json(orient="index", indent=2),
-                file_name="ocr_results.json",
+                file_name=f"ocr_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                 mime="application/json",
                 key="download_current_json",
+            )
+            st.download_button(
+                label="Download results as CSV",
+                data=results_df.to_csv(index=False),
+                file_name=f"ocr_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                mime="text/csv",
+                key="download_current_csv",
             )
         with tab_review:
             st.subheader(texts["review_header"])
