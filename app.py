@@ -246,7 +246,7 @@ if file_bytes:
                 )
                 st.dataframe(highlight_style, width="stretch")
 
-    st.dataframe(results_df, width="stretch")
+    st.data_editor(results_df, width="stretch", hide_index=True)
 
     history = st.session_state["history"]
     existing_entry = history[0] if history and history[0].get("file_hash") == file_hash else None
